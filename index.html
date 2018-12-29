@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book Search Engine</title>
+    <link rel="shortcut icon" href="./assests/images/Books-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assests/stylesheets/main.css">  
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
+    <script src="./scripts/utils/firebase.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <script src="./scripts/DAO.js"></script>
+    <script src="./scripts/users.js"></script>
+    <script defer src="./scripts/Book.js"></script>
+    <script defer src="./scripts/BooksOperation.js"></script>
+    <script src="./scripts/userOperations.js"></script>
+    <script defer src="./scripts/searchOperations.js"></script>
+    <script defer src="./scripts/controller.js"></script>
+
+</head>
+
+<body>
+
+    <div id="login-box" class="center display-none">
+        <div id="login-close">
+            <i class="far fa-times-circle"></i>
+        </div>
+        <div>
+            <div><label for="login-email"><span>Email</span></label></div>
+            <div><input type="email" name="email" id="login-email" placeholder="Type Email ID"></div>
+        </div>
+        <div>
+            <div><label for="login-pass"><span>password</span></label></div>
+            <div><input type="pass" name="pass" id="login-pass" placeholder="Type Password"></div>
+        </div>
+        <div>
+            <button id='login-btn-btn'>login</button>
+        </div>
+    </div>
+
+    <div id="registration-box" class="center display-none">
+        <div id="login-close">
+            <i class="far fa-times-circle"></i>
+        </div>
+        <div>
+            <div><label for="reg-uname"><span>Username</span></label></div>
+            <div><input type="text" name="uname" id="reg-uname"></div>
+        </div>
+        <div>
+            <div><label for="reg-pass"><span>Password</span></label></div>
+            <div><input type="text" name="pass" id="reg-pass"></div>
+        </div>
+        <div>
+            <div><label for="re-pass"><span>Re-Password</span></label></div>
+            <div><input type="text" name="re-pass" id="reg-repass"></div>
+        </div>
+        <div>
+            <div><label for="mob-num"><span>Mobile Number</span></label></div>
+            <div><input type="text" name="mob-num" id="reg-mob"></div>
+        </div>
+        <div>
+            <div><label for="emailID"><span>Email ID</span></label></div>
+            <div><input type="email" name="emailID" id="reg-email"></div>
+        </div>
+        <div>
+            <div><label for=""><span>Gender</span></label></div>
+            <div>
+                <span>Male</span> <input type="radio" name="gen" class="reg-gender" value='male'>
+                <span>Female</span> <input type="radio" name="gen" class="reg-gender" value='female'>
+            </div>
+        </div>
+        <div>
+            <div><button id="reg-reset">Reset</button></div>
+            <div><button id="reg-reg-btn">Register</button></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <header>
+            <div id="search-box">
+                <input type="text" id="search-bar" placeholder="Search Books by Name, Author and Title">
+                <button class="search-button"><i class="fas fa-search search-icon"></i><span>&nbsp;&nbsp;Search</span></button>
+                <button class="search-button" id="adv-search-btn"><i class="fas fa-wrench search-icon"></i><span>&nbsp;&nbsp;Advance
+                        Search</span></button>
+            </div>
+            <nav>
+                <ul class="user-manager-box" id="user-login-reg-box">
+                    <li><a href="#login" id="login-btn"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</a></li>
+                    <li><a href="#register" id="registration-btn"><i class="far fa-address-card"></i>&nbsp;&nbsp;Register</a></li>
+                </ul>
+            </nav>
+
+            <nav>
+                <ul id='user-box' class="user-manager-box display-none">
+                    <li><a href="#""><i class="fas fa-user fa-2x"></i><span>&nbsp;Welcome, <span id="user-box-uname">User</span></span></a></li>
+                    <li class="relative"><a href="#"><i class="fas fa-caret-down"></i><span>&nbsp;&nbsp;Menu</span></a>
+                        <ul class="dropDown-menu">
+                            <li> <button id="view-fav-btn"><i class="fab fa-gratipay fa-2x"></i><span>&nbsp;&nbsp;Favourite List</span></button></li>
+                            <!-- <li> <button><i class="fab fa-opencart fa-2x"></i><span>&nbsp;&nbsp;Cart List</span></button> </li> -->
+                        </ul>
+                        </li>
+                        <li><button id="user-logout"><i class="fas fa-sign-out-alt"></i><span>&nbsp;&nbsp;Logout</span></button></li>
+                </ul>
+            </nav>
+ 
+            <div id="adv-search-bar" class="">
+                <div id="number-of-result-box">
+                    <span>No. of Result Per Page : </span>
+                    <select id="number-of-result">
+                        <option value="10">10</option>
+                        <option value="20" selected>20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+                <div id="filter-by-box">
+                    <select id="filter-by-list">
+                        <option value="" selected><span>Select Book Type</span></option>
+                        <option value="free-ebooks"><span>free ebooks</span></option>
+                        <option value="paid-ebooks"><span>paid ebooks</span></option>
+                        <option value="ebooks"><span>ebooks</span></option>
+                        <option value="partial"><span>partial</span></option>
+                        <option value="full"><span>Full</span></option>
+                    </select>
+                </div>
+                <div id="search-by-box">
+                    <span>search by : </span>
+                    <select id="search-by-list">
+                        <option value="" selected><span>select</span></option>
+                        <option value="intitle"><span>title</span></option>
+                        <option value="inauthor"><span>author</span></option>
+                        <option value="inpublisher"><span>publisher</span></option>
+                        <option value="isbn"><span>isbn</span></option>
+                        <option value="subject"><span>subject</span></option>
+                    </select>
+                    <input type="text" id="search-by-query-text">
+                </div>
+                <div id="order-by-box">
+                    <span>order by: </span>
+                    <select id="order-by-list">
+                        <option value="relevance" selected><span>Relevance</span></option>
+                        <option value="newest"><span>newest</span></option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        <div id="search-result">
+            <h1 id="search-heading"></h1>
+        </div>
+        <div class="books-container">
+        </div>
+        <div id="site-assets">
+            <div class="book-card display-none">
+                <div class="book-image">
+                    <img src="" alt="NA">
+                </div>
+                <div class="book-detail">
+                    <div class="book-name-row">
+                        <div><span>Book-Name</span></div>
+                        <div><span class="book-name"></span></div>
+                    </div>
+                    <div class="author-name-row">
+                        <div><span>Author-Name</span></div>
+                        <div><span class="author-name"></span></div>
+                    </div>
+                    <div class="read-more-row">
+                        <a href="#" class="read-more-link" target="_blank">
+                            <button>
+                                <i class="fas fa-book-reader"></i>
+                                <span>&nbsp;&nbsp;Read More&nbsp;&nbsp;</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="add-to-fav" onclick="addToFavList(this)"><i class="fab fa-gratipay fa-2x"></i></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

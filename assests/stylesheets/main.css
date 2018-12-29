@@ -1,0 +1,561 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url(../images/bg1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.display-none {
+    display: none!important;
+}
+
+.relative{
+    position: relative;
+}
+
+
+select {
+    border-radius: 5px;
+    -webkit-appearance: none;
+    min-width: 100px;
+    height: 42px;
+    padding: 0px 10px;
+    text-transform: capitalize;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1em;
+    background-image: url("../images/angle-double-down-solid.svg");
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 90% center;
+    outline: none;
+    cursor: pointer;
+}
+
+#login-box, #registration-box {
+    position: fixed;
+    background-color: white;
+    width: 25%;
+    height: 36vh;
+    border: 1px solid #6c757d;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 2px navajowhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1% 0%;
+    padding-top: 4%;
+    z-index: 100;
+}
+
+#registration-box {
+    height: 50vh;
+}
+
+#login-box button, #registration-box button {
+    white-space: nowrap;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    background-color: #0062cc;
+    outline: none;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.0em;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition-duration: 0.5s;
+}
+
+#login-box button:hover, #registration-box button:hover {
+    background-color: #408bdd;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 1);
+
+}
+
+#login-box > div, #registration-box > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#login-box > div > div:first-child, #registration-box > div > div:first-child{
+    flex: 0.5;
+}
+
+#registration-box > div:last-child > div{
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+}
+
+#login-box > div > div:first-child label, #registration-box > div > div:first-child label {
+    text-transform: capitalize;
+    justify-content: start;
+    padding-left: 10px;
+}
+
+#login-box > div > div:last-child, #registration-box > div > div:last-child {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#login-box > div > div > input,  #registration-box > div > div > input{
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid blue;
+    outline: none;
+    padding-left: 10px;
+}
+
+#login-box > div > div > input::placeholder,  #login-box > div > div > input::placeholder{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#login-close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#login-close:hover i {
+    color: red;
+}
+
+
+header {
+    position: fixed;
+    background-color: #fff;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    box-shadow: 0px 2px 15px 2px black;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #6c757d;
+    z-index: 13;
+}
+
+.user-manager-box {
+    flex: 0.25;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    justify-content: flex-end;
+}
+
+
+#user-box > li {
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-right: 1px 
+}
+
+.user-manager-box a, .user-manager-box > li > button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
+    font-family: 'Chakra Petch', sans-serif;
+    border-bottom: 2px solid transparent;
+    font-size: 1.0em;
+    color: gray;
+    height: 60px;
+    border-left: 1px solid gray;
+    width: 100%;
+}
+
+.user-manager-box > li > button{
+    background-color: white;
+    border-top: none;
+    border-right: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.user-manager-box >li:hover>a, .user-manager-box > li:hover > button {
+    border-bottom: 2px solid crimson;
+    color: #0062cc;
+}
+
+.dropDown-menu {
+    display: none;
+    position: absolute;
+    top: 61px;
+    right: 0px;
+    background-color: white;
+}
+
+.dropDown-menu > li{
+    display: inline;
+}
+
+.user-manager-box > li:hover > .dropDown-menu {
+    display: inline;
+}
+
+.dropDown-menu > li > button {
+    /* display: inline; */
+    background-color: white;
+    border: none;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.dropDown-menu > li:hover > button {
+    border-left-color: goldenrod;
+}
+
+.dropDown-menu > li:hover > button {
+    color: crimson;
+}
+
+/* 
+.dropDown-menu > li > a {
+    white-space: nowrap;
+    border-bottom: 1px solid gray;
+    justify-content: flex-start;
+    border-left: 2px solid transparent;
+}
+.dropDown-menu > li:hover > a {
+    border-left: 2px solid goldenrod;
+}
+.dropDown-menu > li:hover > a > i {
+    color: crimson;
+} */
+
+#search-box {
+    margin-left: 20px;
+    flex: 1;
+    margin-top: 3px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* img {
+    width: 100%;
+} */
+
+.book-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#search-bar {
+    width: 50%;
+    outline: none;
+    border: none;
+    height: 42px;
+    /* border-radius: 8px 0px 0px 8px; */
+    padding-left: 20px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2em;
+    background-color: #5ee98ca2;
+}
+
+#search-bar::placeholder {
+    padding: 20px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+.search-button {
+    display: inline-block;
+    border: 0px solid transparent;
+    width: 140px;
+    height: 42px;
+    background-color: #0062cc;
+    /* border-radius: 0px 8px 8px 0px; */
+    cursor: pointer;
+    transition-duration: 0.5s;
+    outline: none;
+}
+
+.search-button:hover{
+    background-color: #408bdd;
+}
+
+
+.search-button>span {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 1.2em;
+}
+
+.search-button .search-icon {
+    color: white;
+    font-size: 1.4em;
+}
+
+#adv-search-bar {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    top: 61px;
+    left: 0px;
+    height: 60px;
+    background-color: #fff;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 0px 0px 10px 10px;
+    transition-duration: 1s;
+    transform-origin: top;
+    transform: scaleY(0);
+}
+
+#filter-by-list{
+    width: 200px;
+}
+
+#order-by-list{
+    width: 150px;
+}
+
+
+#adv-search-bar > div {
+    margin-left: 50px;
+}
+
+#adv-search-bar > div > span {
+    font-size: 1.2em;
+    color: #6c757d;
+    text-transform: capitalize;
+}
+
+#search-by-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#search-by-list {
+    width: 150px;
+}
+
+#search-by-box>*{
+    margin-left: 5px;
+}
+
+#search-by-query-text{
+    display: flex;
+    height: 42px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 0px 20px;
+    font-size: 1.2em;
+    font-family: 'Chakra Petch', sans-serif;
+    outline: none;
+}
+
+
+
+#adv-search-btn {
+    width: auto;
+    border-radius: 0px 8px 8px 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #6c757d;
+}
+
+#adv-search-btn:hover{
+    background-color: #5a6268;
+}
+
+#adv-search-btn span {
+    white-space: nowrap;
+}
+
+span {
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+#search-result {
+    transition: 1s;
+    margin-top: 100px;
+    padding: 0% 5%;
+}
+
+#search-result h1 {
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    word-spacing: 5px;
+    letter-spacing: 2px;
+}
+
+
+.books-container {
+    margin-top: 50px;
+    padding: 0% 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 80px;
+}
+
+.books-container>.book-card {
+    position: relative;
+    height: 350px;
+    background-color: white;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px 0px black;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.book-card:hover {
+    transform: translate(0px, -4px);
+    box-shadow: 0px 2px 10px 3px black;
+}
+
+.book-card>.book-image {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.book-card>.book-detail {
+    flex: 0.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    padding: 0px 5px;
+}
+
+.book-detail>div {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.book-detail>div>div:first-child {
+    flex: 0.8;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.book-detail>div>div:last-child {
+    flex: 1;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.book-detail>.read-more-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex: 0.5;
+}
+
+.book-detail span {
+    color: black;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+
+.read-more-row i,
+.read-more-row span {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.read-more-row button {
+    padding: 0px 10px;
+    border: none;
+    background-color: #ffc107;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.read-more-row button:hover i,
+.read-more-row button:hover span {
+    color: crimson;
+}
+
+.add-to-fav i{
+    color: crimson;
+}
+
+.add-to-fav:hover i{
+    color: red;
+}
+
+.add-to-fav{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
